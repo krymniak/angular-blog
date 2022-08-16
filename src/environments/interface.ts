@@ -1,10 +1,11 @@
 import { interval } from "rxjs"
 
 export interface Environment {
-	apiKey: string,
+	apiKey: string
 	production: boolean
 }
 
 export interface FbAuthResponse {
 	idToken: string
+	expiresIn: string
 }

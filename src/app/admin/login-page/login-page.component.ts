@@ -5,19 +5,20 @@ import { User } from 'src/app/shared/components/interfaces';
 import { AuthService } from '../shared/components/admin-layout/services/auth.service';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+	selector: 'app-login-page',
+	templateUrl: './login-page.component.html',
+	styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
 	form!: FormGroup
+	submitted = false
 
-  constructor(
+	constructor(
 		private auth: AuthService,
 		private router: Router
 	) { }
 
-  ngOnInit(): void {
+	ngOnInit(): void {
 		this.form = new FormGroup({
 			email: new FormControl(null, [
 				Validators.required,
@@ -28,11 +29,12 @@ export class LoginPageComponent implements OnInit {
 				Validators.minLength(6)
 			])
 		})
-  }
+	}
 	submit() {
 		if (this.form.invalid) {
 			return
 		}
+		this.submitted = true
 		const user: User = {
 			email: this.form.value.email,
 			password: this.form.value.password,
@@ -40,6 +42,7 @@ export class LoginPageComponent implements OnInit {
 		this.auth.login(user).subscribe(() => {
 			this.form.reset()
 			this.router.navigate(['/admin', 'dashboard'])
+			this.submitted = false
 		})
 	}
 }
