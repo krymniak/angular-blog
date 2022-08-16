@@ -3,15 +3,11 @@
 
 
 	<div class="alert alert-danger" *ngIf="auth.error$ | async as error">{{error}}</div>
-	<div 
-	class="form-control"
-	[ngClass]="{invalid: form.get('email')?.touched && form.get('email')?.invalid}"
-	>
+	<div class="alert alert-info" *ngIf="message">{{message}}</div>
+	<div class="form-control" [ngClass]="{invalid: form.get('email')?.touched && form.get('email')?.invalid}">
 		<label for="email">Email:</label>
 		<input id="email" type="email" formControlName="email">
-		<div
-		*ngIf="form.get('email')?.touched && form.get('email')?.invalid"
-		class="validation">
+		<div *ngIf="form.get('email')?.touched && form.get('email')?.invalid" class="validation">
 			<small *ngIf="form.get('email')?.errors?.['required']">
 				Enter email
 			</small>
@@ -21,26 +17,18 @@
 		</div>
 	</div>
 
-	<div 
-	class="form-control"
-	[ngClass]="{invalid: form.get('password')?.touched && form.get('password')?.invalid}"
-	>
+	<div class="form-control" [ngClass]="{invalid: form.get('password')?.touched && form.get('password')?.invalid}">
 		<label for="password">Password:</label>
 		<input id="password" type="password" formControlName="password">
-		<div 
-		*ngIf="form.get('password')?.touched && form.get('password')?.invalid"
-		class="validation">
-		<small *ngIf="form.get('password')?.errors?.['required']">
-			Enter password
-		</small>
-		<small *ngIf="form.get('password')?.errors?.['minlength']">
-			Password field has contain at least {{form.get('password')?.errors?.['minlength'].requiredLength}} symbols.
-			Actual length is {{form.get('password')?.errors?.['minlength'].actualLength}} symbols
-		</small>
+		<div *ngIf="form.get('password')?.touched && form.get('password')?.invalid" class="validation">
+			<small *ngIf="form.get('password')?.errors?.['required']">
+				Enter password
+			</small>
+			<small *ngIf="form.get('password')?.errors?.['minlength']">
+				Password field has contain at least {{form.get('password')?.errors?.['minlength'].requiredLength}} symbols.
+				Actual length is {{form.get('password')?.errors?.['minlength'].actualLength}} symbols
+			</small>
 		</div>
 	</div>
-	<button 
-	type="submit" class="btn btn-primary"
-	[disabled]="form.invalid || submitted"
-	>Enter</button>
+	<button type="submit" class="btn btn-primary" [disabled]="form.invalid || submitted">Enter</button>
 </form>
