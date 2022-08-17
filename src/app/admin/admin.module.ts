@@ -30,7 +30,7 @@ import { AuthGuard } from "./shared/components/admin-layout/services/auth.guard"
 		])
 	],
 	exports: [RouterModule],
-	providers: [AuthService, AuthGuard],
+	providers: [AuthGuard],
 	declarations: [
 		AdminLayoutComponent,
 		LoginPageComponent,

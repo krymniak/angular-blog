@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 import { FbAuthResponse } from "src/environments/interface";
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 
 export class AuthService {
 
